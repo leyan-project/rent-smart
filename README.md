@@ -17,7 +17,7 @@ Vite prints the development address. For a production build: `npm run build`; se
 ## This release
 
 - Page01: proposed S$570 deduction notice, with no determination of responsibility or confirmed refund.
-- Page02: four initial judgments, explicit submission, no answer reveal, immutable first responses after submission.
+- Page02: four initial judgments shown one at a time, explicit save or Save & Continue, no answer reveal, immutable first responses after saving. Partial or zero responses can be saved; unanswered IDs and completion status are recorded without invented answers.
 - Page03: seven indexed clauses and Appendix A; three interactive clause-and-purpose connections with feedback.
 - Page04: independent S$110 lock exercise, receipt understanding check, optional Q1–Q4 with fixed replies, simulated signing. Only questions actually asked create messages; repeated sends are disabled.
 - Shared shell, chapter/page navigation, Back / Continue, rental file, keyboard focus and modal focus containment, mobile layout, local persistence with schema version and unique run ID, explicit replay confirmation.
@@ -48,3 +48,9 @@ Local progress is specific to this browser and origin under `rent-smart.run`; it
 The first release is published as static files on the `gh-pages` branch. In repository **Settings → Pages**, select **Deploy from a branch**, branch **gh-pages**, folder **/ (root)**, then **Save**. The expected site address is https://leyan-project.github.io/rent-smart/ once GitHub finishes publishing.
 
 The Vite base is `/rent-smart/`, so assets load correctly at that project address. The static branch is a snapshot, not an automatic deployment pipeline; future source updates require rebuilding and publishing it again. The source branch remains `feat/rent-smart-pages-01-04`; `main` is not merged by this setup. GitHub Pages must be available for the repository’s visibility and account plan (public repositories support free Pages). The onboarding environment cannot enable the GitHub Pages setting through its blocked GitHub API.
+
+## Page01–04 usability revision
+
+The opening uses an original, local SVG room illustration (setting only, not evidence) and an expandable landlord notice. The assessment shows one question at a time with question navigation, automatic draft persistence, explicit saving and a Save & Continue action. Saving is allowed with zero, partial or all answers; saved initial choices are read-only and missing answers remain absent. The state stores `preUnansweredIds`, `preCompletion` and the current question index. Existing schema-1 saves retain their answers and gain derived completion metadata. The sidebar shows only the four playable pages by default, with later placeholders collapsed. No Page05–14 mechanics were added.
+
+To run checks against the built preview server use `TEST_URL=http://localhost:4173/rent-smart/ node checks/smoke.cjs`. Tests cover all/partial/zero-response paths, not just a completed assessment.
