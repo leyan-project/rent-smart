@@ -1,6 +1,6 @@
 # Rent Smart — Protect Yourself as a Tenant
 
-A React + TypeScript + Vite learning simulation. All student-facing text is English. No backend, accounts, paid services, runtime AI, remote fonts or photo searches.
+A React + TypeScript + Vite single-repository learning simulation. Pages **01–07** are playable; Pages **08–14** remain explicitly labelled placeholders. All learner text is English. No backend, accounts, runtime AI, remote fonts or online image search.
 
 ## Run
 
@@ -8,49 +8,49 @@ Use Node.js 22.12+ (validated with Node 24).
 
 ```sh
 cd /workspace/rent-smart
-npm install
+npm ci
 npm run dev
 ```
 
-Vite prints the development address. For a production build: `npm run build`; serve it with `npm run preview`. To reproduce locked dependencies, use `npm ci` instead of `npm install`.
+Vite prints the development address. Build with `npm run build`; serve the production build with `npm run preview`. The project base is `/rent-smart/` for GitHub Pages.
 
-## This release
+## Playable scope
 
-- Page01: proposed S$570 deduction notice, with no determination of responsibility or confirmed refund.
-- Page02: four initial judgments shown one at a time, explicit save or Save & Continue, no answer reveal, immutable first responses after saving. Partial or zero responses can be saved; unanswered IDs and completion status are recorded without invented answers.
-- Page03: seven indexed clauses and Appendix A; three interactive clause-and-purpose connections with feedback.
-- Page04: independent S$110 lock exercise, receipt understanding check, optional Q1–Q4 with fixed replies, simulated signing. Only questions actually asked create messages; repeated sends are disabled.
-- Shared shell, chapter/page navigation, Back / Continue, rental file, keyboard focus and modal focus containment, mobile layout, local persistence with schema version and unique run ID, explicit replay confirmation.
-- Page05–14 are clearly labelled **not yet playable**. Visiting these previews creates no evidence, locks no history and marks nothing complete.
+- Page01–04: interactive deduction notice, single-question initial assessment (including partial/zero-response saving), seven-clause agreement with Appendix A and three clause-link tasks, optional Q1–Q4, independent S$110 lock exercise and simulated signing. Existing content and assessment logic are retained.
+- Page05: five normalized-coordinate room hotspots and equivalent keyboard/touch item buttons. Viewing the desk does not test the right-hand drawer. The mattress must be uncovered. Window/wardrobe actions and drawer testing visibly change the room illustration. No action automatically saves evidence.
+- Page06: item list, simulated image choices, objective observation tags and optional personal notes. Available records depend on actual checks. Drafts persist but are not sendable. Save one item or all eligible drafts, with stable record IDs and incrementing revisions. Unsaved edits leave earlier saved versions intact. Navigation offers save, discard changes, or keep editing. Notes alone cannot create an observation record and are never scored as facts.
+- Page07: preview and send only selected saved records, including batch submissions. Immutable attachment snapshots keep earlier messages tied to the version actually sent. Exact duplicate batches are blocked. A receipt acknowledges only that batch. Functional drawer reports receive a limited further-inspection reply. Floor pre-existence is confirmed only after an explicit follow-up on a submitted snapshot with close-up, context image and objective location/scratch descriptions. Missing requirements are listed together. No known fact or final financial responsibility is invented.
 
-The three clause tasks must be completed for the guided Continue action. Signing requires the two understanding checks, but no landlord question is mandatory. The sidebar permits revisiting and previewing pages without inventing completion.
+All move-in events use **2027-01-01**, with sequence numbers rather than device dates. Saved but unsent records remain personal. Empty/partial evidence paths are permitted. The first navigation into the later placeholders asks whether to archive existing move-in history; archive makes inspection, editing, sending and follow-up read-only. It does not implement the dispute pages or mark the course complete. Cancel that prompt to keep working on Pages05–07.
 
-## State and extension boundaries
+## Temporary visual assets
 
-`src/state.ts` defines inspection actions, independent draft/saved records, immutable attachment snapshots and submission batches, receipt versus fact confirmation, locked history, three case analyses, first/latest attempts, response invalidation, perspective reflection, post-assessment and replay isolation. Component contracts for report editing, submission and analysis are included. These are extension interfaces, **not implemented Page05–14 workflows**. Implement archive confirmation and enforce reducer-level history guards when those workflows are added. Do not interpret the current preview as archived history.
+`src/MoveInVisual.tsx` is a replaceable SVG scene with consistent crops defined in `src/moveInModel.ts`. The room and close-up views are explicitly labelled simulated illustrations, **not real photographs or finalized evidence assets**. The scratch, desk drawer, bed and wardrobe use the same geometry across views. The original Page01 illustration is unchanged. Final photorealistic room assets and later move-out/curtain assets remain outstanding.
 
-Story content is in `src/content.ts`. Contract terms are fictional, not universal legal requirements. The room reference is not used as evidence. Final room imagery, later interactions, official-reference review and a full 45-minute learner trial remain outstanding. No free-text scoring is claimed.
+## State
 
-## Checks
+`src/state.ts` retains schema version 1 and unique run IDs with additive fields so prior first-release saves load without losing answers or messages. `src/moveInModel.ts` contains guarded state transitions for inspection, drafts, save, submit, follow-up and archive. Historical snapshots copy arrays and notes; they do not point at editable entry arrays. Receipt, fact confirmation and responsibility discussion are separate communication types. The rental file shows personal saved versions, exact submitted revisions and actual move-in messages. Restart creates a new isolated run.
+
+Progress is specific to the browser/origin under `rent-smart.run`; it is not cloud-synced. Clearing site storage removes it. Unreadable saves and failed storage writes display warnings.
+
+## Browser checks
+
+With the dev server on port 5173 and Chromium installed:
 
 ```sh
 npm run build
-# Chromium must be installed, or run npx playwright install chromium first.
-CHROMIUM_PATH=/usr/bin/chromium node checks/smoke.cjs
+node checks/smoke.cjs
+node checks/move-in.cjs
 ```
 
-The smoke test expects the dev server on port 5173. It checks actual browser interactions, selective Q1 storage followed by all four questions, refresh restoration, contract connections, signing, placeholder navigation, mobile horizontal overflow, dialog Escape and new-run isolation. Chromium was available locally; browser download access is not required in this environment. For another browser installation, set `CHROMIUM_PATH` accordingly.
+Both scripts use Playwright and default to `/usr/bin/chromium`. `checks/smoke.cjs` accepts `CHROMIUM_PATH` for another executable. To exercise a running production preview instead:
 
-Local progress is specific to this browser and origin under `rent-smart.run`; it is not cloud-synced. Clearing site storage removes it. Unsupported or unreadable saved data starts a new run with a warning. A storage-write failure displays a warning.
+```sh
+TEST_URL=http://localhost:4173/rent-smart/ node checks/move-in.cjs
+```
 
-## Online preview (GitHub Pages)
+The first suite covers the original Page01–04 interactions, persistence, partial/zero initial answers, signing, migration and replay. The second covers complete/partial/zero/draft-only move-in paths, physical action gates, batch saving/sending, immutable A/B snapshot histories, incomplete and complete fact-check requests, duplicate sends, refresh, archive guards, rental file and mobile overflow. Later dispute workflows and course effectiveness are not claimed as tested.
 
-The first release is published as static files on the `gh-pages` branch. In repository **Settings → Pages**, select **Deploy from a branch**, branch **gh-pages**, folder **/ (root)**, then **Save**. The expected site address is https://leyan-project.github.io/rent-smart/ once GitHub finishes publishing.
+## Online preview
 
-The Vite base is `/rent-smart/`, so assets load correctly at that project address. The static branch is a snapshot, not an automatic deployment pipeline; future source updates require rebuilding and publishing it again. The source branch remains `feat/rent-smart-pages-01-04`; `main` is not merged by this setup. GitHub Pages must be available for the repository’s visibility and account plan (public repositories support free Pages). The onboarding environment cannot enable the GitHub Pages setting through its blocked GitHub API.
-
-## Page01–04 usability revision
-
-The opening uses an original, local SVG room illustration (setting only, not evidence) and an expandable landlord notice. The assessment shows one question at a time with question navigation, automatic draft persistence, explicit saving and a Save & Continue action. Saving is allowed with zero, partial or all answers; saved initial choices are read-only and missing answers remain absent. The state stores `preUnansweredIds`, `preCompletion` and the current question index. Existing schema-1 saves retain their answers and gain derived completion metadata. The sidebar shows only the four playable pages by default, with later placeholders collapsed. No Page05–14 mechanics were added.
-
-To run checks against the built preview server use `TEST_URL=http://localhost:4173/rent-smart/ node checks/smoke.cjs`. Tests cover all/partial/zero-response paths, not just a completed assessment.
+Static build files are published on `gh-pages`. In repository **Settings → Pages**, select **Deploy from a branch → gh-pages → / (root) → Save** if not already configured. Expected address: https://leyan-project.github.io/rent-smart/ . The static branch is a snapshot, not an automatic deployment pipeline; future source changes must be rebuilt and republished. Source remains on `feat/rent-smart-pages-01-04`; no merge to main is implied.

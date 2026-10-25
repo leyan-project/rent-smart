@@ -13,3 +13,15 @@ Not yet verified: final teaching effectiveness, 45-minute timing, official-refer
 Root cause: the old Save button required all four answers and Continue depended on that submission flag, without a partial path. Replaced with explicit incomplete/complete metadata and Save & Continue, retaining actual unanswered items. Page02 is now a single-question experience; Page01 has an original illustrated room and interactive deduction notice. Simplified navigation and added visible guidance for the existing Page03–04 completion requirements. Existing schema-1 saves migrate additively without resetting run IDs or answers. No downstream content or rules changed.
 
 Validation: updated Chromium smoke checks exercise the complete Page01→02→03→04 path, question and page backtracking, all/one/zero-answer submissions, reload on every page, optional Q1 then Q2–Q4, wrong and correct understanding choices, signing, legacy metadata migration, mobile controls and horizontal overflow, and replay isolation. Production-path checks run against the built site at /rent-smart/.
+
+## Page05–07 increment
+
+Implemented the blueprint's N1–N3 workflows in the existing app. The shared shell adds three playable entries, navigation guards for unsaved drafts and the archive boundary before later placeholders. Original Page01–04 component content, English question/contract material and the Page01 artwork remain unchanged; their browser regression suite passes.
+
+Artwork is an explicitly temporary, replaceable illustrated room, with fixed viewBox crops and consistent geometry. SVG evidence views use `meet` to avoid clipping the scratch or window out of the context image. The right-hand drawer, clean uncovered mattress, open window and wardrobe have visible action states. No independent stock rooms, downloaded photographs or final asset claims are used.
+
+Model transitions enforce checked versus draft versus saved versus sent. Exact batches are deduplicated in canonical item order. Snapshot IDs include run, item and saved revision; prior snapshot arrays and messages survive later editing and resubmission. Floor confirmation requires submitted close-up + context + objective location/scratch tags + active follow-up. Drawer functional reports only establish that symptoms were reported and received, without determining cause or liability. Personal notes are retained but do not drive conditional fact confirmation.
+
+Actual Chromium checks cover full, partial, zero and draft-only paths; A sent → B draft → discard B → save B → send B; exact receipt lists; refresh at each stage; explicit floor follow-up; read-only archive navigation; mobile horizontal overflow; and the unchanged earlier-page suite. Desktop screenshots reviewed. A first test assertion was corrected to inspect an actual disabled checkbox rather than assuming Playwright's `isDisabled()` classifies a fieldset itself.
+
+Still pending: final unified room photographs/illustrations and evidence asset review; Page08–14 interactions; later dispute scenario paths and full learning-duration validation. The archive prompt is a boundary safeguard, not completion of Page08.
