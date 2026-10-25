@@ -60,3 +60,9 @@ Static build files are published on `gh-pages`. In repository **Settings → Pag
 Page05 now uses semi-realistic local room artwork, with image crops and selectively composited inspection states from the same room. All five areas remain interactive; drawer testing, uncovered mattress, window and wardrobe have visible image changes. Close-ups can be enlarged and closed with Escape. Inspection still creates no saved report or submission automatically. This presentation-only update keeps Page06–07's existing simulated report assets and all state/evidence rules unchanged.
 
 Additional visual/action check: `node checks/page05-visual.cjs` (accepts `TEST_URL`, as above). This checks the five areas, actual before/after detail imagery, image loading, zoom dialogs, persistent inspection state, touch/keyboard actions and mobile overflow.
+
+## Page06 visual update
+
+Page06 uses the same semi-realistic Page05 image pair for selectable evidence cards, separate image previews and a live report panel. Stable photo IDs and existing evidence rules remain unchanged. The live panel explicitly distinguishes draft choices from saved revisions and keeps the prior saved version available while editing. Drawer stills remain closed/static; the uncovered mattress view is offered only after the existing inspection gate. No new learning tasks or state fields were added. Page07's layout and older simulated thumbnail renderer remain unchanged in this page-specific increment.
+
+Run `node checks/page06-visual.cjs` against a preview server (or supply `TEST_URL`) to check asset consistency, preview without selection, live draft updates, saved-version separation, persistent choices/notes, uninspected gating, transfer to Page07 and mobile layout.

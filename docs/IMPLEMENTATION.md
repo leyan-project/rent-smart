@@ -33,3 +33,11 @@ Replaced Page05's geometric room illustration with a generated semi-realistic ro
 Visual checks found and corrected two issues: SVG letterboxing initially allowed artwork outside the desired close-up to spill into the margin, so all content is clipped to the selected viewBox; the floor detail was calibrated to the actual fine scratch rather than a floorboard joint. Modal screenshots wait for visible state images, and the visual test compares detail images before/after action, excluding marker-only changes.
 
 Assets are fictional simulation artwork, not real-world evidence photographs. See `src/assets/page05/README.md` for provenance and the unchanged report-asset boundary. No paid or remote service is needed to run the app.
+
+## Page06 visual-only upgrade
+
+Extracted the existing report presentation into `InspectionReport.tsx`, preserving its dispatched actions and gates. Cards and preview crops use Page05's local raster assets via `ReportPhoto.tsx`, while keeping all fixed evidence IDs unchanged. Added an adjacent live draft preview and an independently labelled saved-report summary, including saved revisions during unsaved edits. Only saved state continues to feed Page07. Image-preview controls are separate from checkbox labels and never dispatch selection/save actions. The optional note remains unscored. Page05's artwork and UI, Page07's layout, the state schema and the reducer are unchanged.
+
+No new room images were needed. All Page06 floor, drawer, mattress, window and wardrobe imagery comes from the Page05 source pair. The drawer still never uses the opened/tested drawer patch to claim functional evidence; the mattress crop uses the uncovered state only behind its existing check gate. These are simulated course assets, not real tenancy photographs.
+
+Production build and real Chromium Page05→06→07 checks passed. Additional checks verified same source assets, previews with no state mutation, live draft image/note changes, refreshing drafts, saved A unchanged during draft B, unsaved B excluded from Page07 snapshots, static drawer and uncovered-mattress visuals, uninspected-item gating and mobile preview/overflow. Desktop and mobile screenshots reviewed. The current sandbox required running Chromium outside its local-socket restriction; no browser assertions were removed to work around that restriction.
