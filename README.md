@@ -54,3 +54,9 @@ The first suite covers the original Page01–04 interactions, persistence, parti
 ## Online preview
 
 Static build files are published on `gh-pages`. In repository **Settings → Pages**, select **Deploy from a branch → gh-pages → / (root) → Save** if not already configured. Expected address: https://leyan-project.github.io/rent-smart/ . The static branch is a snapshot, not an automatic deployment pipeline; future source changes must be rebuilt and republished. Source remains on `feat/rent-smart-pages-01-04`; no merge to main is implied.
+
+## Page05 visual update
+
+Page05 now uses semi-realistic local room artwork, with image crops and selectively composited inspection states from the same room. All five areas remain interactive; drawer testing, uncovered mattress, window and wardrobe have visible image changes. Close-ups can be enlarged and closed with Escape. Inspection still creates no saved report or submission automatically. This presentation-only update keeps Page06–07's existing simulated report assets and all state/evidence rules unchanged.
+
+Additional visual/action check: `node checks/page05-visual.cjs` (accepts `TEST_URL`, as above). This checks the five areas, actual before/after detail imagery, image loading, zoom dialogs, persistent inspection state, touch/keyboard actions and mobile overflow.

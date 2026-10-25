@@ -25,3 +25,11 @@ Model transitions enforce checked versus draft versus saved versus sent. Exact b
 Actual Chromium checks cover full, partial, zero and draft-only paths; A sent → B draft → discard B → save B → send B; exact receipt lists; refresh at each stage; explicit floor follow-up; read-only archive navigation; mobile horizontal overflow; and the unchanged earlier-page suite. Desktop screenshots reviewed. A first test assertion was corrected to inspect an actual disabled checkbox rather than assuming Playwright's `isDisabled()` classifies a fieldset itself.
 
 Still pending: final unified room photographs/illustrations and evidence asset review; Page08–14 interactions; later dispute scenario paths and full learning-duration validation. The archive prompt is a boundary safeguard, not completion of Page08.
+
+## Page05 visual-only upgrade
+
+Replaced Page05's geometric room illustration with a generated semi-realistic room master and one reference-image edit of that same room. The clean mattress, drawer, window and wardrobe state regions are selectively composited, keeping untested objects unchanged. Main room markers use normalized source-image coordinates; local views and an accessible enlarged dialog use the exact same image coordinate system. The room scene is substantially wider; duplicated instructions are reduced. Page01–04, Page06–07, `moveInModel.ts`, `state.ts`, evidence IDs and all teaching-state transitions remain unchanged. `InspectRoom` was extracted from the existing move-in module to isolate this page's presentation.
+
+Visual checks found and corrected two issues: SVG letterboxing initially allowed artwork outside the desired close-up to spill into the margin, so all content is clipped to the selected viewBox; the floor detail was calibrated to the actual fine scratch rather than a floorboard joint. Modal screenshots wait for visible state images, and the visual test compares detail images before/after action, excluding marker-only changes.
+
+Assets are fictional simulation artwork, not real-world evidence photographs. See `src/assets/page05/README.md` for provenance and the unchanged report-asset boundary. No paid or remote service is needed to run the app.
