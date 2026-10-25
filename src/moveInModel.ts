@@ -20,7 +20,7 @@ export function snapshotId(s:RunState,item:Item){return `${s.runId}:${item}:r${s
 export type MoveInAction={type:'inspect';item:Item;perform?:boolean}|{type:'draft';item:Item;photoIds:string[];descriptionParts:string[];note?:string}|{type:'save';items:Item[]}|{type:'discard'}|{type:'send';items:Item[]}|{type:'followup';snapshotId:string}|{type:'archive'};
 export function moveInReducer(s:RunState,a:MoveInAction):RunState{
  if(s.historyLocked)return s;
- if(a.type==='archive')return {...s,historyLocked:true};
+ if(a.type==='archive')return {...s,currentPage:8,phase:'dispute',historyLocked:true,archivedAtPage:8};
  if(a.type==='inspect'){const actions={...s.inspectionActions};if(a.item==='floor')actions.floorInspected=true;if(a.item==='drawer'){actions.deskViewed=true;if(a.perform)actions.drawerTested=true}if(a.item==='mattress'&&a.perform)actions.mattressLifted=true;if(a.item==='window'&&a.perform)actions.windowTested=true;if(a.item==='wardrobe'&&a.perform)actions.wardrobeChecked=true;return {...s,inspectionActions:actions}}
  if(a.type==='draft'){if(!inspected(s,a.item))return s;const validPhotos=photos[a.item].map(p=>p.id),validParts=availableDescriptions(s,a.item).map(d=>d.id);return {...s,inspectionEntries:{...s.inspectionEntries,[a.item]:{...s.inspectionEntries[a.item],draftPhotoIds:[...new Set(a.photoIds.filter(id=>validPhotos.includes(id)))],draftDescriptionParts:[...new Set(a.descriptionParts.filter(id=>validParts.includes(id)))],draftNote:(a.note??'').slice(0,500)}}}}
  if(a.type==='discard'){return {...s,inspectionEntries:Object.fromEntries(items.map(id=>{const e=s.inspectionEntries[id];return [id,{...e,draftPhotoIds:[...e.savedPhotoIds],draftDescriptionParts:[...e.savedDescriptionParts],draftNote:e.savedNote??''}]})) as Record<Item,Entry>}}

@@ -66,3 +66,11 @@ Additional visual/action check: `node checks/page05-visual.cjs` (accepts `TEST_U
 Page06 uses the same semi-realistic Page05 image pair for selectable evidence cards, separate image previews and a live report panel. Stable photo IDs and existing evidence rules remain unchanged. The live panel explicitly distinguishes draft choices from saved revisions and keeps the prior saved version available while editing. Drawer stills remain closed/static; the uncovered mattress view is offered only after the existing inspection gate. No new learning tasks or state fields were added. Page07's layout and older simulated thumbnail renderer remain unchanged in this page-specific increment.
 
 Run `node checks/page06-visual.cjs` against a preview server (or supply `TEST_URL`) to check asset consistency, preview without selection, live draft updates, saved-version separation, persistent choices/notes, uninspected gating, transfer to Page07 and mobile layout.
+
+## Run lifecycle and read-only review
+
+An existing archived run stays read-only when revisiting Pages01–07; it is never silently unlocked by navigating backward. The archive transition now enters Page08 and records `archivedAtPage: 8` atomically. Links to later placeholders must pass that boundary. Cancelling archive leaves the current run editable. Legacy archived saves retain their history and receive the explanatory archive marker when loaded.
+
+Earlier pages show an explicit archived-run explanation and a restart action. Read-only review can use Continue even if the original tasks were incomplete, without modifying historical choices. New runs synchronously replace the local save with a new run ID and reset archive state, answers, signatures, inspections, drafts, reports, snapshots, messages and transient UI. A different run started in another tab is adopted by already-open tabs.
+
+Incomplete clause checks now give actionable feedback rather than an unexplained disabled button. Signing and saving explain their prerequisites; empty or unchanged report saves state what actually happened. `node checks/run-lifecycle.cjs` verifies the full Page01→07 flow twice, including restart from an archive, read-only review, legacy archive restoration, later-page navigation and cross-tab reset.
