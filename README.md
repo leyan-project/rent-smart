@@ -42,3 +42,9 @@ CHROMIUM_PATH=/usr/bin/chromium node checks/smoke.cjs
 The smoke test expects the dev server on port 5173. It checks actual browser interactions, selective Q1 storage followed by all four questions, refresh restoration, contract connections, signing, placeholder navigation, mobile horizontal overflow, dialog Escape and new-run isolation. Chromium was available locally; browser download access is not required in this environment. For another browser installation, set `CHROMIUM_PATH` accordingly.
 
 Local progress is specific to this browser and origin under `rent-smart.run`; it is not cloud-synced. Clearing site storage removes it. Unsupported or unreadable saved data starts a new run with a warning. A storage-write failure displays a warning.
+
+## Online preview (GitHub Pages)
+
+The first release is published as static files on the `gh-pages` branch. In repository **Settings → Pages**, select **Deploy from a branch**, branch **gh-pages**, folder **/ (root)**, then **Save**. The expected site address is https://leyan-project.github.io/rent-smart/ once GitHub finishes publishing.
+
+The Vite base is `/rent-smart/`, so assets load correctly at that project address. The static branch is a snapshot, not an automatic deployment pipeline; future source updates require rebuilding and publishing it again. The source branch remains `feat/rent-smart-pages-01-04`; `main` is not merged by this setup. GitHub Pages must be available for the repository’s visibility and account plan (public repositories support free Pages). The onboarding environment cannot enable the GitHub Pages setting through its blocked GitHub API.
