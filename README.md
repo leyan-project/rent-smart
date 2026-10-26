@@ -1,6 +1,6 @@
 # Rent Smart — Protect Yourself as a Tenant
 
-A React + TypeScript + Vite single-repository learning simulation. Pages **01–12** are playable; Pages **13–14** remain explicitly labelled placeholders. All learner text is English. No backend, accounts, runtime AI, remote fonts or online image search.
+A React + TypeScript + Vite single-repository learning simulation. Pages **01–14** are playable. All learner text is English. No backend, accounts, runtime AI, remote fonts or online image search.
 
 ## Run
 
@@ -25,7 +25,7 @@ All move-in events use **2027-01-01**, with sequence numbers rather than device 
 
 ## Temporary visual assets
 
-`src/MoveInVisual.tsx` is a replaceable SVG scene with consistent crops defined in `src/moveInModel.ts`. The room and close-up views are explicitly labelled simulated illustrations, **not real photographs or finalized evidence assets**. The scratch, desk drawer, bed and wardrobe use the same geometry across views. The original Page01 illustration is unchanged. Pages05–06 use the newer semi-realistic room image pair; the older SVG remains in Page07 thumbnails. Dispute visuals reuse the same room, with a reference-edited stained mattress at move-out. All are fictional course illustrations. Final asset review and the independent curtain-case assets remain outstanding.
+`src/MoveInVisual.tsx` is a replaceable SVG scene with consistent crops defined in `src/moveInModel.ts`. The room and close-up views are explicitly labelled simulated illustrations, **not real photographs or finalized evidence assets**. The scratch, desk drawer, bed and wardrobe use the same geometry across views. The original Page01 illustration is unchanged. Pages05–06 use the newer semi-realistic room image pair; the older SVG remains in Page07 thumbnails. Dispute visuals reuse the same room, with a reference-edited stained mattress at move-out. All are fictional course illustrations. The independent curtain challenge has its own paired simulated images; its relevant move-in hem is physically hidden by an oak chest. Final asset and official reference review remain separate editorial tasks.
 
 ## State
 
@@ -97,3 +97,10 @@ TEST_URL=http://localhost:4174/rent-smart/ node checks/disputes.cjs
 ```
 
 The suite runs real full-evidence and zero-evidence Page07→12 flows, receipt-only and unsaved-draft variants, wrong-answer progression, analysis persistence, partial-cost replies, invalidation/regeneration, immutable first judgments and history, contradictions with recoverable drafts, file access and mobile layout.
+
+## Final challenge and toolkit
+
+- Page13: independent curtain case, approximately 4 cm tear; proposed S$180 replacement (S$120 curtain + S$60 installation), incomplete move-in photo and visible move-out tear. Four judgments use the same dimensions as Page02. Feedback is withheld until all four first judgments have been submitted; explicitly unanswered judgments are permitted. Wrong answers can continue. First responses are immutable; drafts, latest submissions and attempt counts are separate. Earlier room evidence is never part of this case.
+- Page14: four descriptive comparisons use actual submitted Page02 responses and first submitted Page13 responses, including missing answers. Later corrections do not become independent performance or percentage improvement. Actual inspection/saved/sent record trails and landlord messages are reviewed separately. Checklist supports clipboard copy (manual fallback) and browser print / Save as PDF. Replay uses the existing confirmation and creates an isolated new run.
+
+Production browser check: `TEST_URL=http://localhost:4174/rent-smart/ node checks/finale.cjs`. `checks/disputes.cjs` also follows fully recorded and zero-evidence paths from Page07 through Page14. No final refund or liability is invented.
