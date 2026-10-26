@@ -51,3 +51,11 @@ Fix: enter Page08 and set the archive marker in one model transition; route firs
 Browser validation: full Page01→07 using real controls, archive/cancel, read-only Pages03–07, unchanged snapshots/history, legacy archive refresh, restart/reset assertions, a second full Page01→07 after replay, two-tab reset synchronization and archived review of incomplete tasks. The initial full lifecycle suite passed before the existing partial/zero-evidence and assessment regression suites were rerun.
 
 Additional reproduced issue: opening the rental-file agreement over Page03 rendered duplicate clause IDs. Clicking the modal index left its own reader at scrollTop 0 and targeted the background. Each ContractViewer now scopes its IDs and explicitly scrolls its own clause. A Chromium check covers Page03 with both readers and the Page04 modal; contract copy and task logic are unchanged.
+
+## Page03 judgment progression
+
+The reported 2+4+6 answer was rejected by exact equality against the old 2+6 set. Both sets are now accepted for the records/supporting-materials purpose. All other clause selections are still evaluated, and unsupported extra clauses are not silently accepted. The same three prompts and existing page layout remain in place.
+
+Submission completion is separated from correctness. One actual judgment per task unlocks Continue; a missing clause selection or purpose does not count as a submission. The first incorrect judgment receives specific feedback, and a second incorrect judgment receives an explicit hint. Optional answer explanations do not populate controls, increment attempts or change submitted correctness. First and latest answers, per-attempt snapshots, counts, hints and answer-reveal flags persist across refresh. Unsubmitted later edits remain distinct from the final submitted answer. Legacy records preserve only known facts and do not invent historical first answers or counts.
+
+Chromium tests exercised all-correct (including 2+4+6), mixed and all-wrong answers entering Page04; first/second-error feedback; manual hints and answer reveal without false correctness; retries preserving the first judgment; exact counts and latest judgments; refresh; valid 2+6; irrelevant extra clauses; legacy data and replay reset. Scope is Page03 plus its state metadata and test expectations; other page UI and logic are unchanged.
