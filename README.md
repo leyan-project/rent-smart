@@ -1,6 +1,6 @@
 # Rent Smart — Protect Yourself as a Tenant
 
-A React + TypeScript + Vite single-repository learning simulation. Pages **01–07** are playable; Pages **08–14** remain explicitly labelled placeholders. All learner text is English. No backend, accounts, runtime AI, remote fonts or online image search.
+A React + TypeScript + Vite single-repository learning simulation. Pages **01–12** are playable; Pages **13–14** remain explicitly labelled placeholders. All learner text is English. No backend, accounts, runtime AI, remote fonts or online image search.
 
 ## Run
 
@@ -21,11 +21,11 @@ Vite prints the development address. Build with `npm run build`; serve the produ
 - Page06: item list, simulated image choices, objective observation tags and optional personal notes. Available records depend on actual checks. Drafts persist but are not sendable. Save one item or all eligible drafts, with stable record IDs and incrementing revisions. Unsaved edits leave earlier saved versions intact. Navigation offers save, discard changes, or keep editing. Notes alone cannot create an observation record and are never scored as facts.
 - Page07: preview and send only selected saved records, including batch submissions. Immutable attachment snapshots keep earlier messages tied to the version actually sent. Exact duplicate batches are blocked. A receipt acknowledges only that batch. Functional drawer reports receive a limited further-inspection reply. Floor pre-existence is confirmed only after an explicit follow-up on a submitted snapshot with close-up, context image and objective location/scratch descriptions. Missing requirements are listed together. No known fact or final financial responsibility is invented.
 
-All move-in events use **2027-01-01**, with sequence numbers rather than device dates. Saved but unsent records remain personal. Empty/partial evidence paths are permitted. The first navigation into the later placeholders asks whether to archive existing move-in history; archive makes inspection, editing, sending and follow-up read-only. It does not implement the dispute pages or mark the course complete. Cancel that prompt to keep working on Pages05–07.
+All move-in events use **2027-01-01**, with sequence numbers rather than device dates. Saved but unsent records remain personal. Empty/partial evidence paths are permitted. The first navigation into Page08 asks whether to archive existing move-in history; archive makes inspection, editing, sending and follow-up read-only. Dispute analysis remains editable in its own separate state. Entering the dispute stage does not mark the course complete. Cancel that prompt to keep working on Pages05–07.
 
 ## Temporary visual assets
 
-`src/MoveInVisual.tsx` is a replaceable SVG scene with consistent crops defined in `src/moveInModel.ts`. The room and close-up views are explicitly labelled simulated illustrations, **not real photographs or finalized evidence assets**. The scratch, desk drawer, bed and wardrobe use the same geometry across views. The original Page01 illustration is unchanged. Final photorealistic room assets and later move-out/curtain assets remain outstanding.
+`src/MoveInVisual.tsx` is a replaceable SVG scene with consistent crops defined in `src/moveInModel.ts`. The room and close-up views are explicitly labelled simulated illustrations, **not real photographs or finalized evidence assets**. The scratch, desk drawer, bed and wardrobe use the same geometry across views. The original Page01 illustration is unchanged. Pages05–06 use the newer semi-realistic room image pair; the older SVG remains in Page07 thumbnails. Dispute visuals reuse the same room, with a reference-edited stained mattress at move-out. All are fictional course illustrations. Final asset review and the independent curtain-case assets remain outstanding.
 
 ## State
 
@@ -49,7 +49,7 @@ Both scripts use Playwright and default to `/usr/bin/chromium`. `checks/smoke.cj
 TEST_URL=http://localhost:4173/rent-smart/ node checks/move-in.cjs
 ```
 
-The first suite covers the original Page01–04 interactions, persistence, partial/zero initial answers, signing, migration and replay. The second covers complete/partial/zero/draft-only move-in paths, physical action gates, batch saving/sending, immutable A/B snapshot histories, incomplete and complete fact-check requests, duplicate sends, refresh, archive guards, rental file and mobile overflow. Later dispute workflows and course effectiveness are not claimed as tested.
+The first suite covers the original Page01–04 interactions, persistence, partial/zero initial answers, signing, migration and replay. The second covers complete/partial/zero/draft-only move-in paths, physical action gates, batch saving/sending, immutable A/B snapshot histories, incomplete and complete fact-check requests, duplicate sends, refresh, archive guards, rental file and mobile overflow. The additional dispute suite described below exercises the implemented dispute workflows. Course effectiveness and the remaining Page13–14 workflows are not claimed as tested.
 
 ## Online preview
 
@@ -80,3 +80,20 @@ Incomplete clause checks now give actionable feedback rather than an unexplained
 Continue requires one non-empty submitted judgment per contract task, regardless of correctness. The third task accepts 2+4+6 with the records/supporting-materials purpose, and also retains the valid narrower 2+6 link. Wrong attempts receive task-specific feedback; the second incorrect attempt displays a more explicit hint. After any submission learners may request a hint or view the answer and explanation without rewriting their own answer.
 
 Each `contractReview` entry stores immutable `firstAnswer`, `attemptCount`, `incorrectCount`, `hintUsed`, `answerRevealed`, `attempts` and the latest submitted `finalAnswer`. Current `ids`/`role` remain draft selections; changing them does not rewrite the latest submitted judgment. Correctness is separate from submission credit. Legacy saved-correct judgments retain credit without fabricating their unknown first attempt or prior attempt count. Run `node checks/page03-attempts.cjs` (with `TEST_URL` if needed) to check all-correct, partly wrong and all-wrong progression, retry feedback, hints/reveal, persistence and replay isolation.
+
+## Page08–12 dispute stage
+
+- Page08: the S$250/S$120/S$200 proposals (total S$570), archive status and access to the actual rental file.
+- Pages09–11: current move-out material beside saved personal versions, immutable submitted snapshots, actual landlord messages and contract clauses. Drafts never enter this catalogue. Full floor guidance, a shorter drawer prompt, and minimal mattress scaffolding with optional help. The known spill and S$90+S$70+S$40 quotation are always visible before mattress judgments.
+- Four structured analysis sections: references, supported facts, uncertainty, position and specific requests. Wrong or incomplete reasoning receives up to two targeted feedback points; a complete four-section judgment can be saved without being correct. First and latest judgments and hint use are stored separately. Free notes are not semantically scored.
+- Page12: preview generated only from saved current analyses and real references, structured request editing, A/B/combined tenant-perspective reflection and simulated sending. An edited analysis invalidates the old preview and outcomes until regeneration. Case-specific landlord replies identify current status, actual basis and next steps; they do not settle a refund or invent inspection findings.
+
+State transitions live in `disputeModel.ts`, separate from the locked move-in model. New drafts, analyses, feedback and sent-response history persist locally without changing the archived 2027 evidence or communications. Original Page01–07 components and teaching logic are retained; the shared shell registers the new stage.
+
+With a production preview running on port 4174:
+
+```sh
+TEST_URL=http://localhost:4174/rent-smart/ node checks/disputes.cjs
+```
+
+The suite runs real full-evidence and zero-evidence Page07→12 flows, receipt-only and unsaved-draft variants, wrong-answer progression, analysis persistence, partial-cost replies, invalidation/regeneration, immutable first judgments and history, contradictions with recoverable drafts, file access and mobile layout.
