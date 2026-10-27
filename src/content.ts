@@ -14,11 +14,17 @@ export const questions = [
 ['What is missing from a move-out photo alone?',['A basis for comparing when and where the scratch first appeared','The tenant’s bank details','Nothing else is needed to determine responsibility']],
 ['How would you respond at this point?',['Accept the deduction because I have no records to hand','Ask for the relevant comparison records and an explanation of this deduction','Reject every deduction without reviewing the materials']]];
 export const clarifications = [
-['Appendix A says “Good”. What if I find a problem after moving in?','Send dated photos and written notes within 7 calendar days after moving in. I will acknowledge receipt first, then check each item. We will keep any corrections we both confirm separately in writing.'],
-['How will we distinguish existing defects, ordinary wear and new damage?','We will compare the move-in and move-out materials and the particular circumstances, then consider the relevant contract provisions item by item.'],
-['Can I see photographs, quotations and explanations for proposed deductions?','I will provide relevant explanations and supporting materials under the agreement. You can ask for further details so we can check the proposed deductions.'],
-['Does the S$200 minor-repair arrangement apply to a fault that already existed?','The amount alone cannot settle that. We need to check the existing problem and whether this particular repair falls within the agreement’s scope.']];
+['Appendix A says “Good”. What if I find a problem after moving in?','Send me dated photos and notes within 7 calendar days of moving in. I’ll confirm they arrived, then check the items. We’ll keep any agreed corrections in writing.'],
+['How will we distinguish existing defects, ordinary wear and new damage?','Let’s compare the move-in and move-out records, then look at what happened and the relevant terms for each item.'],
+['Can I see photographs, quotations and explanations for proposed deductions?','Yes. I’ll share the photos, quotes and reasons behind any proposed deduction. Let me know what needs clarifying.'],
+['Does the S$200 minor-repair arrangement apply to a fault that already existed?','Not just because it costs less than S$200. We’d need to check the earlier fault and whether that repair is covered.']];
 export const tasks = [
 {title:'Record the starting condition',prompt:'Link the provisions that let you supplement the preliminary furniture list after inspecting the room.',ids:['3','A'],role:'Dated records can support a written correction to the preliminary list.'},
 {title:'Separate damage from repair limits',prompt:'Link the provisions needed before deciding whether the S$200 arrangement applies.',ids:['4','5'],role:'Check the facts and scope before applying an amount limit.'},
 {title:'Review a proposed deduction',prompt:'Link the provisions that connect the deposit to handover and supporting materials.',ids:['2','6'],role:'Review the proposed deduction against records and supporting materials.'}];
+
+export const contractOptions=[
+ [tasks[0].role,'The initial inventory fixes the starting condition; later notes mainly identify repairs to arrange.','Dated records replace the initial inventory without needing a separate agreed correction.'],
+ [tasks[1].role,'The repair clause allocates costs first; the damage clause matters when the quote exceeds the limit.','An existing fault rules out any tenant repair contribution, without checking the cause or repair scope.'],
+ [tasks[2].role,'Handover records establish the condition, so a matching deduction can be accepted without supporting cost materials.','The deposit provision sets the amount available; the handover review only checks that the keys were returned.']
+];

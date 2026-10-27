@@ -7,7 +7,7 @@ export const legacyChallengeQuestions=[
  {title:'What would you say to this landlord?',options:['I accept S$180 because it is below the minor-repair limit.','I can see the tear at move-out, but cannot establish when it arose. Please share comparison records and explain replacement and both costs before we discuss responsibility and an appropriate amount.','I reject the whole claim because the move-in photograph hides the hem.'],answer:'1',feedback:'Acknowledge the visible tear without inventing its cause. Request comparison records and a reasoned replacement / cost basis. Neither a low quote nor a hidden hem settles responsibility.'}
 ];
 // Stable option IDs retain their meaning; older responses keep their original wording.
-export const challengeQuestions=[
+export const versionTwoQuestions=[
  {title:'Which provisions belong together?',options:[
  'Link use and damage to routine repairs; if replacement is reasonably priced below S$200, apply the tenant contribution before reviewing the handover record.',
  'Link condition records, use and damage, and deposit / handover terms; establish responsibility and check repair scope before applying an amount limit.',
@@ -29,9 +29,19 @@ export const challengeQuestions=[
  'The earlier hem is hidden, so I cannot accept responsibility on these materials. Please put the entire S$180 claim aside unless a clear move-in photo shows it was intact.'
  ],answer:'1',feedback:'Acknowledge the visible condition, reserve the unresolved responsibility question and request both historical and cost support. Offering to pay first assumes responsibility; demanding one particular photograph can exclude other relevant records.'}
 ];
-export const questionsForRun=(s:RunState)=>s.postQuestionVersion===1?legacyChallengeQuestions:challengeQuestions;
+export const challengeQuestions=versionTwoQuestions.map((q,i)=>i===0?{...q,options:[
+ 'Apply the damage and routine-repair terms to the quoted work; use the handover terms to check the amount against the deposit.',
+ 'Use condition and damage terms to assess responsibility; check repair scope separately when reviewing the deduction under the handover terms.',
+ 'Use condition and handover terms to identify changes; apply the repair contribution to any documented change costing below S$200.'
+ ]}:i===1?{...q,options:[
+ 'The photos document damage at move-out; the absence of a visible earlier tear supports a change during the tenancy, subject to other records.',
+ 'The photos document different views; the obscured area weakens the claim enough to favour an existing defect, subject to other records.',
+ 'The photos document damage at move-out; the obscured earlier area leaves the timing open, so other records are needed to assess responsibility.'
+ ]}:q);
+export const questionsForRun=(s:RunState)=>s.postQuestionVersion===1?legacyChallengeQuestions:s.postQuestionVersion===2?versionTwoQuestions:challengeQuestions;
 export function challengeFeedback(s:RunState,i:number,value:string){
  const q=questionsForRun(s)[i];if(s.postQuestionVersion===1||!value||value===q.answer)return q.feedback;
+ if(s.postQuestionVersion===3&&i===0)return value==='0'?'The damage and repair terms matter, but the deduction review also needs the condition history. Check responsibility and eligible repair scope before deciding a contribution.':'A documented change does not automatically fall within routine repairs. Establish what caused it and whether the contribution arrangement covers that work.';
  const specific=[
  ['The price and repair provisions matter, but a reasonable quote below S$200 does not establish responsibility or repair eligibility. Compare condition and handover evidence first.','','An obscured hem is an evidence gap, not proof that the claim is invalid. Keep use and damage provisions in the review.'],
  ['A tear visible only in the later image is not necessarily new: the relevant earlier area was hidden. Seek a record that actually shows the hem.','An obscured area is not positive evidence of a pre-existing defect. Keep both timing and cause open until more records are available.',''],

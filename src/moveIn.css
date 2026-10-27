@@ -2,3 +2,4 @@
 .movein-layout aside .journey-note{display:none}.movein-layout aside .restart{margin-top:auto}.movein-layout aside .later-chapters{margin-bottom:25px}
 @media(min-width:761px){.movein-layout .report-editor{max-height:calc(100vh - 355px);min-height:400px;overflow:auto}.movein-layout .report-items{max-height:calc(100vh - 355px);min-height:400px;overflow:auto}.movein-layout .attachment-panel,.movein-layout .conversation-panel{max-height:calc(100vh - 370px);min-height:400px;overflow:auto}.movein-layout .conversation{max-height:310px}.movein-layout .inspection-scene{max-height:430px;max-width:537.5px;margin:auto}.movein-layout .inspection-detail{max-height:510px;overflow:auto}}
 .sim-photo .report-photo-art,.sim-photo .inspection-room-art{display:block;width:100%;height:100%}
+.record-send-status{font-size:10px;color:#718566;margin:10px 0}

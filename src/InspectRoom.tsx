@@ -11,7 +11,7 @@ export function InspectRoom({state:s,dispatch}:MoveInProps){
  const checked=items.filter(id=>id==='drawer'?a.drawerTested:inspected(s,id)).length;
  const result=selected&&(selected==='drawer'&&a.drawerTested?'The right-hand drawer resists opening and closing and does not close smoothly. The cause has not been established.':selected==='mattress'&&a.mattressLifted?'The uncovered mattress surface has no obvious stains.':selected==='window'&&a.windowTested?'The window opens and closes during your check.':selected==='wardrobe'&&a.wardrobeChecked?'There are light signs of use. The wardrobe functions normally.':observations[selected]);
  const complete=(id:Item)=>id==='drawer'?a.drawerTested:inspected(s,id);
- const flags={lifted:a.mattressLifted,drawerOpen:a.drawerTested,windowOpen:a.windowTested,wardrobeOpen:a.wardrobeChecked};
+ const flags={legacy:s.evidenceVisualVersion!==2,lifted:a.mattressLifted,drawerOpen:a.drawerTested,windowOpen:a.windowTested,wardrobeOpen:a.wardrobeChecked};
  const view=selected==='floor'&&context?'550 180 675 565':selected?roomViews[selected]:undefined;
  function choose(id:Item){select(id);setContext(false);dispatch({type:'inspect',item:id})}
  useEffect(()=>{if(zoom&&!modal.current?.open)modal.current?.showModal();else if(!zoom&&modal.current?.open)modal.current.close()},[zoom]);
