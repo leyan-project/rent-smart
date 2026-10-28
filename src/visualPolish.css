@@ -1,4 +1,42 @@
 /* Light visual polish only: existing layouts, controls, status labels and imagery remain. */
+.sign-status{font-size:12px;line-height:1.65;color:#71816b;margin:10px 0 0}
+.room-experience .detail-empty{padding:0}
+.room-experience .detail-empty h2{font-family:inherit;font-size:22px;font-weight:550;line-height:1.35;margin:0 0 12px}
+.room-experience .detail-empty>p{margin:0;line-height:1.7}
+.room-experience .detail-empty>.inspection-tip{margin-top:16px;padding-top:12px;font-size:10px}
+.submission-layout .record-choice-note{padding:12px 14px;margin:12px 0;font-size:11px;line-height:1.65}
+.submission-layout .attachment-card{padding:14px;margin-bottom:10px}
+.submission-layout .record-send-status{margin:8px 0;font-size:10px}
+.submission-layout .conversation-title{padding:15px 18px}
+.overview-stage{align-items:start}
+.overview-message{padding:24px}
+.overview-message>.avatar{display:inline-grid;vertical-align:middle;margin:0 10px 0 0}
+.overview-message>.eyebrow{display:inline;font-size:10px;letter-spacing:.8px}
+.overview-message>p{margin:18px 0 0}
+.overview-total{margin-top:20px;padding-top:16px}
+.overview-total b{font-size:36px}
+.overview-cases{gap:10px}
+.case-entry{padding:10px;gap:14px}
+.case-entry-image{height:96px}
+.archive-strip{margin-top:8px;padding:16px 0}
+.case-desk .source-card{padding:10px 12px}
+.case-desk .source-card>label{align-items:flex-start}
+.case-desk .source-card>label>input{flex-shrink:0;margin-top:3px}
+.case-desk .source-card>label>span{min-width:0}
+.case-desk .source-card small{margin-top:4px}
+.case-desk .source-preview{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#77866c;font-size:10px;line-height:1.55;margin-top:6px;font-weight:400}
+.case-desk .source-card>button{margin-top:8px;padding:6px 10px;min-height:30px}
+.case-desk .analysis-notice{margin:10px 0;font-size:11px}
+.case-desk .analysis-notice:empty{display:none}
+.case-desk .analysis-feedback{padding:13px 15px;margin-top:12px}
+.case-desk .analysis-feedback p{margin:0;line-height:1.7}
+.case-desk .analysis-feedback p+p{margin-top:8px}
+.case-desk .analysis-feedback>small{display:block;margin-bottom:8px;font-size:10px;color:#71816b}
+.challenge-file-head{padding-bottom:0}
+.challenge-file-head h2{font-size:25px;line-height:1.3;margin:0 0 12px}
+.challenge-file-head p{margin:0;line-height:1.75}
+.challenge-material .curtain-pair{margin-top:20px;gap:12px}
+.challenge-material-label{font-size:9px;color:#819173;margin:8px 0 12px}
 .layout>aside>.restart{margin-top:22px}
 .layout>aside .page-links{margin:14px 0 10px}
 .layout>aside .page-links button,.layout>aside .dispute-chapters>button,.layout>aside .finale-chapters>button{font-size:11px;font-weight:500;line-height:1.5;min-height:36px;padding:8px 9px;margin-bottom:2px;text-align:left}
