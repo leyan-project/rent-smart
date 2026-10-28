@@ -122,3 +122,9 @@ Backup tag `stable-before-new-ending` points to `718e0e417acc15bbc6cd20152f32ee4
 | Mattress | S$90: acknowledges the stain and queries all three services | S$160: acknowledges it and queries part of the service quote | S$200 |
 
 Missing records are not treated as proof of liability; these are preset negotiation endings. Refund = S$1,300 minus the three game deductions. Deterministic/model check: `node checks/new-ending-model.cjs`. Browser check (after the model fixture check): `node checks/new-ending-browser.cjs`, using preview port4174. The tests cover 27 tier combinations and three representative refunds (S$1,210 / S$955 / S$730), source equivalence of protected Page02–13 code, UI persistence, copy/PDF, mobile and replay.
+
+## Final challenge interlude and first-response summary
+
+Backup tag `stable-before-challenge-feedback` → `128e356034538654ee719d743e03bf5bd314ee27`. Page12→13 now opens an unnumbered interlude while the underlying page/progress remains12/14. It distinguishes a current sent response, an earlier sent response with later changes, and no sent response. Take the Final Challenge enters the existing Page13. A single optional UI flag persists an open interlude across refresh; it does not change archived records.
+
+After all four judgments are submitted, Page13 shows four skill cards and the number of **supported first judgments**, using the existing comparison rules. Unanswered/unavailable first responses are labelled separately, later revisions keep their existing feedback, and the summary never converts to a deposit reward. Reveal My Deposit Outcome goes to the unchanged Page14. Checks: `node checks/challenge-milestones.cjs`, plus the existing finale, dispute, Page12-conflict and settlement suites. Page01, the actual challenge questions/grading and the Page14 toolkit/settlement implementation remain unchanged.
